@@ -104,11 +104,16 @@ class _LoginPageState extends State<LoginPage> {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                 color: Colors.grey,
                 onPressed: () {
-                  Navigator.pushAndRemoveUntil(context,
-                      MaterialPageRoute(builder: (context) => const SellerPage()),
-                          (route) => false);
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SellerPage()),
+                      (route) => false);
                 },
-                child: const Text('Entrar', style: TextStyle(color: Colors.black),),
+                child: const Text(
+                  'Entrar',
+                  style: TextStyle(color: Colors.black),
+                ),
               ))
         ],
       ),

@@ -62,11 +62,11 @@ class _RegNumberPageState extends State<RegNumberPage> {
                         borderSide: BorderSide(color: Colors.black)),
                   ),
                     validator: (value) {
-                      if (value.toString().length < 3 && value.toString().length >= 4) {
+                      if (value!.toString().length < 3 && value.toString().length >= 4 || value.isEmpty) {
                         return 'Número no válido';
                       }else{
                         setState(() {
-                          _numberText.text = value!;
+                          _numberText.text = value;
                         });
                         return null;
                       }
@@ -122,7 +122,11 @@ class _RegNumberPageState extends State<RegNumberPage> {
                     color: Colors.grey,
                     onPressed: () {
                       if(_formKey.currentState!.validate()){
-                        print(_priceText);
+                        //lógica de registrar va aquí
+
+                        //reiniciando campos de texto para nuevo número
+                        _numberText.clear();
+                        _priceText.clear();
                         _formKey.currentState!.reset();
                       }
                     },
