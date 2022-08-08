@@ -10,6 +10,7 @@ class RegNumberPage extends StatefulWidget {
 class _RegNumberPageState extends State<RegNumberPage> {
   final TextEditingController _numberText = TextEditingController();
   final TextEditingController _priceText = TextEditingController();
+  final TextEditingController _numberPhoneText = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -44,7 +45,7 @@ class _RegNumberPageState extends State<RegNumberPage> {
           key: _formKey,
           child: ListView(
             children: [
-              const SizedBox(height: 150),
+              const SizedBox(height: 120),
               Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 100),
@@ -110,6 +111,34 @@ class _RegNumberPageState extends State<RegNumberPage> {
                     }
                   )),
               const SizedBox(height: 10),
+              Container(
+                  padding:
+                  const EdgeInsets.symmetric(vertical: 10, horizontal: 100),
+                  child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: _numberPhoneText,
+                      decoration: InputDecoration(
+                        labelText: 'Teléfono',
+                        floatingLabelStyle:
+                        MaterialStateTextStyle.resolveWith((states) {
+                          return const TextStyle(color: Colors.black);
+                        }),
+                        border: const OutlineInputBorder(),
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black)),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Número de telefono no válido';
+                        } else {
+                          setState(() {
+                            _numberPhoneText.text = value;
+                          });
+                          return null;
+                        }
+                      }
+                  )),
+              const SizedBox(height: 20),
               Container(
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
