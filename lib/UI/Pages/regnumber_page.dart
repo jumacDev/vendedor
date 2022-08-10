@@ -156,6 +156,7 @@ class _RegNumberPageState extends State<RegNumberPage> {
                         //reiniciando campos de texto para nuevo número
                         _numberText.clear();
                         _priceText.clear();
+                        _numberPhoneText.clear();
                         _formKey.currentState!.reset();
                       }
                     },

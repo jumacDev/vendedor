@@ -18,8 +18,6 @@ class _SellerPageState extends State<SellerPage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: myAppBar(context),
       body: sellerBody(context),
