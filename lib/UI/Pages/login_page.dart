@@ -35,11 +35,11 @@ class _LoginPageState extends State<LoginPage> {
 
   AppBar myAppbar() => AppBar(
         title: const Text(
-          'Entrar',
+          'MilloChance Vendedor',
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.grey,
+        backgroundColor: Color.fromARGB(255, 0, 46, 83),
       );
 
   loginBody() {
@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
               child: TextFormField(
                 controller: _userText,
                 decoration: InputDecoration(
-                  labelText: 'usuario',
+                  labelText: 'Usuario',
                   floatingLabelStyle:
                       MaterialStateTextStyle.resolveWith((states) {
                     return const TextStyle(color: Colors.black);
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _passText,
                 obscureText: _obscureText,
                 decoration: InputDecoration(
-                    labelText: 'clave',
+                    labelText: 'Clave',
                     floatingLabelStyle:
                         MaterialStateTextStyle.resolveWith((states) {
                       return const TextStyle(color: Colors.black);

@@ -29,6 +29,13 @@
             {
               "client_id": "924312376333-qh7at8pmn225tj3gdde66hvgk1fpf691.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "924312376333-9oc4h1h6njd29l299k5h8s6o0ebci77j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vendedor.app.vendedor"
+              }
             }
           ]
         }
