@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vendedor/UI/Pages/login_page.dart';
 
-void main(){
+void main() {
   runApp(const SellerApp());
 }
-
 
 class SellerApp extends StatefulWidget {
   const SellerApp({Key? key}) : super(key: key);
@@ -20,7 +19,6 @@ class _SellerAppState extends State<SellerApp> {
       debugShowCheckedModeBanner: false,
       title: 'Vendedores',
       home: LoginPage(),
-
     );
   }
 }

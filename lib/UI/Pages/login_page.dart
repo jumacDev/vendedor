@@ -19,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     _obscureText = true;
@@ -87,7 +88,9 @@ class _LoginPageState extends State<LoginPage> {
                         borderSide: BorderSide(color: Colors.black)),
                     suffixIcon: CupertinoButton(
                         child: Icon(
-                          _obscureText ? Icons.visibility_off : Icons.visibility,
+                          _obscureText
+                              ? Icons.visibility_off
+                              : Icons.visibility,
                           color: Colors.grey,
                         ),
                         onPressed: () {
@@ -108,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                   color: Colors.grey,
                   onPressed: () {
-                    if(_formKey.currentState!.validate()){
+                    if (_formKey.currentState!.validate()) {
                       //lógica de inicio de sesión aquí
 
                       //reiniciando campos de inicio de sesión
@@ -119,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const SellerPage()),
-                              (route) => false);
+                          (route) => false);
                     }
                   },
                   child: const Text(
