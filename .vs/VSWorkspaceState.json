@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\lib"
+    "\\lib",
+    "\\lib\\UI",
+    "\\lib\\UI\\Pages"
   ],
   "SelectedNode": "\\lib\\main.dart",
   "PreviewInSolutionExplorer": false
