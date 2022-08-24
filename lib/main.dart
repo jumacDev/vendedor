@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:vendedor/UI/Pages/login_page.dart';
+import 'package:vendedor/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

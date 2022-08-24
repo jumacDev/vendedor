@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vendedor/UI/Pages/seller_page.dart';
+import '../Style/color_to_views.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 0, 46, 83),
+        backgroundColor: primarycolor,
       );
 
   loginBody() {
@@ -63,11 +64,11 @@ class _LoginPageState extends State<LoginPage> {
                   labelText: 'Usuario',
                   floatingLabelStyle:
                       MaterialStateTextStyle.resolveWith((states) {
-                    return const TextStyle(color: Colors.black);
+                    return const TextStyle(color: primarycolor);
                   }),
                   border: const OutlineInputBorder(),
                   focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black)),
+                      borderSide: BorderSide(color: primarycolor)),
                 ),
               ),
             ),
@@ -81,17 +82,17 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: 'Clave',
                     floatingLabelStyle:
                         MaterialStateTextStyle.resolveWith((states) {
-                      return const TextStyle(color: Colors.black);
+                      return const TextStyle(color: primarycolor);
                     }),
                     border: const OutlineInputBorder(),
                     focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black)),
+                        borderSide: BorderSide(color: primarycolor)),
                     suffixIcon: CupertinoButton(
                         child: Icon(
                           _obscureText
                               ? Icons.visibility_off
                               : Icons.visibility,
-                          color: Colors.grey,
+                          color: primarycolor,
                         ),
                         onPressed: () {
                           _obscureText = !_obscureText;
@@ -109,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.all(Radius.circular(15))),
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                  color: Colors.grey,
+                  color: primarycolor,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       //lógica de inicio de sesión aquí
@@ -121,13 +122,13 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const SellerPage()),
+                              builder: (context) => const MainView()),
                           (route) => false);
                     }
                   },
                   child: const Text(
                     'Entrar',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: Colors.white),
                   ),
                 ))
           ],

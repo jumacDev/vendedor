@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:vendedor/MODELS/sale_model.dart';
 import 'package:vendedor/MODELS/seller_model.dart';
-import 'package:vendedor/UI/Pages/login_page.dart';
-import 'package:vendedor/UI/Pages/regnumber_page.dart';
+import 'package:vendedor/UI/Pages/input_page.dart';
 import 'package:vendedor/UI/Pages/sales_page.dart';
+import 'package:vendedor/UI/Style/color_to_views.dart';
+import '../Widgets/main_menu.dart';
 
 
-class SellerPage extends StatefulWidget {
-  const SellerPage({Key? key}) : super(key: key);
+class MainView extends StatefulWidget {
+  const MainView({Key? key}) : super(key: key);
 
   @override
-  State<SellerPage> createState() => _SellerPageState();
+  State<MainView> createState() => _MainViewState();
 }
 
-class _SellerPageState extends State<SellerPage> {
+class _MainViewState extends State<MainView> {
 
 
   @override
@@ -21,24 +22,15 @@ class _SellerPageState extends State<SellerPage> {
     return Scaffold(
       appBar: myAppBar(context),
       body: sellerBody(context),
+      drawer: mainMenu(context),
     );
   }
 
   myAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.grey,
-      title: const Text('Inicio', style: TextStyle(color: Colors.white),),
+      backgroundColor: primarycolor,
+      title: const Text('Usuario: XX', style: TextStyle(color: Colors.white),),
       centerTitle: true,
-      actions: [
-        IconButton(
-            onPressed: (){
-              Navigator.pushAndRemoveUntil(context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                      (route) => false);
-            },
-            icon: const Icon(Icons.logout, color: Colors.white,)
-        )
-      ],
     );
   }
 
@@ -58,7 +50,7 @@ class _SellerPageState extends State<SellerPage> {
               const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
               color: Colors.grey,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const RegNumberPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const InputPage()));
               },
               child: const Text('Registrar Número', style: TextStyle(color: Colors.black),),
             )),
@@ -91,7 +83,7 @@ class _SellerPageState extends State<SellerPage> {
               color: Colors.grey,
               onPressed: () {
                 Navigator.pushAndRemoveUntil(context,
-                    MaterialPageRoute(builder: (context) => const SellerPage()),
+                    MaterialPageRoute(builder: (context) => const MainView()),
                         (route) => false);
               },
               child: const Text('Hacer Corte del día', style: TextStyle(color: Colors.black),),
