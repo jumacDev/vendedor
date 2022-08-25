@@ -21,6 +21,7 @@ dependencies:
   firebase_core: 
   cloud_firestore:
   firebase_auth:
+  toggle_switch:
 
 dev_dependencies:
   flutter_test:

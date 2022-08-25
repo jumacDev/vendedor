@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 import 'package:vendedor/MODELS/sale_model.dart';
 import 'package:vendedor/MODELS/seller_model.dart';
 import 'package:vendedor/UI/Pages/input_page.dart';
@@ -36,60 +37,55 @@ class _MainViewState extends State<MainView> {
 
   sellerBody(BuildContext context) {
     Seller seller = buildseller();
-    return Column(
-      children: [
-        const SizedBox(height: 200),
-        Container(
-            padding: const EdgeInsets.all(10),
-            alignment: Alignment.center,
-            // ignore: deprecated_member_use
-            child: RaisedButton(
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15))),
-              padding:
-              const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-              color: Colors.grey,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const InputPage()));
-              },
-              child: const Text('Registrar Número', style: TextStyle(color: Colors.black),),
-            )),
-        const SizedBox(height: 10),
-        Container(
-            padding: const EdgeInsets.all(10),
-            alignment: Alignment.center,
-            // ignore: deprecated_member_use
-            child: RaisedButton(
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15))),
-              padding:
-              const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-              color: Colors.grey,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SalesPage(saleslist: seller.saleslist)));
-              },
-              child: const Text('Ver Números Registrados', style: TextStyle(color: Colors.black),),
-            )),
-        const SizedBox(height: 10),
-        Container(
-            padding: const EdgeInsets.all(10),
-            alignment: Alignment.center,
-            // ignore: deprecated_member_use
-            child: RaisedButton(
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15))),
-              padding:
-              const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-              color: Colors.grey,
-              onPressed: () {
-                Navigator.pushAndRemoveUntil(context,
-                    MaterialPageRoute(builder: (context) => const MainView()),
-                        (route) => false);
-              },
-              child: const Text('Hacer Corte del día', style: TextStyle(color: Colors.black),),
-            ))
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 80),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ToggleSwitch(
+                activeBgColor: const [primarycolor],
+                minWidth: 120,
+                minHeight: 120,
+                initialLabelIndex: 1,
+                totalSwitches: 2,
+                labels: const ['Lotería 1', 'No usar'],
+                onToggle: (index) => print(index),
+              ),
+            ],
+          ),
+      const SizedBox(height: 15,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ToggleSwitch(
+                activeBgColor: const [primarycolor],
+                minWidth: 120,
+                minHeight: 120,
+                initialLabelIndex: 1,
+                totalSwitches: 2,
+                labels: const ['Lotería 2', 'No usar'],
+                onToggle: (index) => print(index),
+              ),
 
-      ],
+
+            ],
+          ),
+          const SizedBox(height: 150,),
+      // ignore: deprecated_member_use
+      RaisedButton(
+        color: primarycolor,
+        textColor: Colors.white,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))),
+        padding:
+        const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+        child: const Text('Registrar Número'),
+        onPressed: (){},
+      )
+        ],
+      ),
     );
   }
 
