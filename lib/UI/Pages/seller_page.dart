@@ -13,9 +13,13 @@ class MainView extends StatefulWidget {
 
   @override
   State<MainView> createState() => _MainViewState();
+
 }
 
 class _MainViewState extends State<MainView> {
+  final List <bool> isSelected = [false, false, false];
+  List <bool> _selections =  List.generate(3, (_) => false);
+
 
 
   @override
@@ -41,6 +45,34 @@ class _MainViewState extends State<MainView> {
       padding: const EdgeInsets.symmetric(vertical: 80),
       child: Column(
         children: [
+          //-------------------------------------------------------------------------
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ToggleButtons(
+                children: <Widget>[
+                  Icon(Icons.ac_unit),
+                  Icon(Icons.call),
+                  Icon(Icons.cake),
+                ],
+                onPressed: (int index) {
+                  int count = 0;
+                  isSelected.forEach((bool val) {
+                    if (val) count++;
+                  });
+
+                  if (isSelected[index] && count < 2)
+                    return;
+
+                  setState(() {
+                    isSelected[index] = !isSelected[index];
+                  });
+                },
+                isSelected: isSelected,
+              ),
+            ],
+          ), //------------------------------------------------------------------
+          const SizedBox(height: 15,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
