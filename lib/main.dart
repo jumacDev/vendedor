@@ -5,8 +5,10 @@ import 'package:vendedor/UI/Pages/login_page.dart';
 
 void main()  {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
-  runApp(const SellerApp());
+  Firebase.initializeApp().then((value){
+    runApp(const SellerApp());
+  });
+
 }
 
 class SellerApp extends StatefulWidget {
