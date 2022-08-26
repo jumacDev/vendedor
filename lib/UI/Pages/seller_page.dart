@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 import 'package:vendedor/MODELS/sale_model.dart';
 import 'package:vendedor/MODELS/seller_model.dart';
-import 'package:vendedor/UI/Pages/input_page.dart';
-import 'package:vendedor/UI/Pages/sales_page.dart';
+//import 'package:vendedor/UI/Pages/input_page.dart';
+//import 'package:vendedor/UI/Pages/sales_page.dart';
 import 'package:vendedor/UI/Style/color_to_views.dart';
 import '../Widgets/main_menu.dart';
 
@@ -17,10 +16,9 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  final List <bool> isSelected = [false, false, false];
-  List <bool> _selections =  List.generate(3, (_) => false);
-
-
+  bool isSelect = false;
+  bool isSelect1 = false;
+  bool isSelect2 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +26,12 @@ class _MainViewState extends State<MainView> {
       appBar: myAppBar(context),
       body: sellerBody(context),
       drawer: mainMenu(context),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: (){},
+        label: const Text('Siguiente', style: TextStyle(fontSize: 20,color: Colors.white),),
+        backgroundColor: primarycolor,
+
+      ),
     );
   }
 
@@ -41,81 +45,47 @@ class _MainViewState extends State<MainView> {
 
   sellerBody(BuildContext context) {
     Seller seller = buildseller();
+
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 80),
+      alignment: Alignment.center,
+      padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 60),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          //-------------------------------------------------------------------------
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ToggleButtons(
-                children: <Widget>[
-                  Icon(Icons.ac_unit),
-                  Icon(Icons.call),
-                  Icon(Icons.cake),
-                ],
-                onPressed: (int index) {
-                  int count = 0;
-                  isSelected.forEach((bool val) {
-                    if (val) count++;
-                  });
-
-                  if (isSelected[index] && count < 2)
-                    return;
-
-                  setState(() {
-                    isSelected[index] = !isSelected[index];
-                  });
-                },
-                isSelected: isSelected,
-              ),
-            ],
-          ), //------------------------------------------------------------------
           const SizedBox(height: 15,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ToggleSwitch(
-                activeBgColor: const [primarycolor],
-                minWidth: 120,
-                minHeight: 120,
-                initialLabelIndex: 1,
-                totalSwitches: 2,
-                labels: const ['Lotería 1', 'No usar'],
-                onToggle: (index) => print(index),
-              ),
-            ],
+          ActionChip(
+            avatar: Icon(Icons.abc, size: 60,),
+            backgroundColor: isSelect? Colors.grey : primarycolor,
+              label: const Text('Loteria 1', style: TextStyle(fontSize: 40, color: Colors.white),),
+              onPressed: (){
+              setState(() {
+                isSelect = !isSelect;
+              });
+              }
           ),
-      const SizedBox(height: 15,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ToggleSwitch(
-                activeBgColor: const [primarycolor],
-                minWidth: 120,
-                minHeight: 120,
-                initialLabelIndex: 1,
-                totalSwitches: 2,
-                labels: const ['Lotería 2', 'No usar'],
-                onToggle: (index) => print(index),
-              ),
-
-
-            ],
+          const SizedBox(height: 15,),
+          ActionChip(
+              avatar: Icon(Icons.abc, size: 60),
+              backgroundColor: isSelect1? Colors.grey : primarycolor,
+              label: const Text('Loteria 2', style: TextStyle(fontSize: 40, color: Colors.white),),
+              onPressed: (){
+                setState(() {
+                  isSelect1 = !isSelect1;
+                });
+              }
           ),
-          const SizedBox(height: 150,),
-      // ignore: deprecated_member_use
-      RaisedButton(
-        color: primarycolor,
-        textColor: Colors.white,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15))),
-        padding:
-        const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-        child: const Text('Registrar Número'),
-        onPressed: (){},
-      )
+          const SizedBox(height: 15,),
+          ActionChip(
+              avatar: Icon(Icons.abc, size: 60),
+              backgroundColor: isSelect2? Colors.grey : primarycolor,
+              label: const Text('Loteria 3', style: TextStyle(fontSize: 40, color: Colors.white),),
+              tooltip: 'Horra de cierre 6 pm',
+              onPressed: (){
+                setState(() {
+                  isSelect2 = !isSelect2;
+                });
+              }
+          ),
         ],
       ),
     );
