@@ -1,56 +1,123 @@
 import 'package:flutter/material.dart';
-import '../../MODELS/sale_model.dart';
+import 'package:vendedor/UI/Style/color_to_views.dart';
+import 'package:vendedor/UI/Widgets/main_menu.dart';
 
 class SalesPage extends StatefulWidget {
-  final List<Sale> saleslist;
-  const SalesPage({Key? key, required this.saleslist}) : super(key: key);
+  const SalesPage({Key? key}) : super(key: key);
 
   @override
   State<SalesPage> createState() => _SalesPageState();
 }
 
 class _SalesPageState extends State<SalesPage> {
+  late DateTime saleDate;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar(),
-      body: buildSalesList()
+        appBar: myAppBar(),
+        body: buildSales(),
+        drawer: mainMenu(context),
     );
   }
 
   myAppBar() {
     return AppBar(
-      backgroundColor: Colors.grey,
+      backgroundColor: primarycolor,
       title: const Text(
-        'Lista de Números de Hoy',
+        'Usuario: XX',
         style: TextStyle(color: Colors.white),
       ),
       centerTitle: true,
     );
   }
 
-  buildSalesList() {
-    return ListView.builder(
-        padding: const EdgeInsets.all(11),
-        itemCount: widget.saleslist.length * 2 ,
-        itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return const Divider(color: Colors.black,);
-          /*2*/
-          int index = i ~/ 2; /*3*/
-          return _buildRow(widget.saleslist[index]);
-        });
-  }
+  buildSales() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+              // ignore: deprecated_member_use
+              child: RaisedButton(
+                onPressed: () async {
+                  DateTime? saleDate = await showDatePicker(
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: const ColorScheme.light(
+                            primary: primarycolor, // header background color
+                            onPrimary: Colors.white, // header text color
+                            onSurface: Colors.black, // body text color
+                          ),
+                          textButtonTheme: TextButtonThemeData(
+                            style: TextButton.styleFrom(
+                              primary: primarycolor, // button text color
+                            ),
+                          ),
+                        ),
+                        child: child!,
+                      );
+                    },
+                    context: context,
+                    locale: const Locale('es', 'ES'),
+                    initialDate: DateTime(2022, 01, 01),
+                    firstDate: DateTime(2021),
+                    lastDate: DateTime(2100));
+                },
+                color: primarycolor,
+                child: const Text(
+                  'Seleccionar Fecha',
+                  style: TextStyle(fontSize: 15, color: Colors.white),
+                ),
+              )),
+          const SizedBox(height: 10,),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: const Text('Ventas del día: 1000', style: TextStyle(fontSize: 20),),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: const Text('Mi porcentaje: 250', style: TextStyle(fontSize: 20),),
+          ),
+          const SizedBox(height: 15,),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: const Text('Listado números vendidos', style: TextStyle(fontSize: 20),),
+          ),
+          SingleChildScrollView(
+            child: DataTable(
+                columnSpacing: 30,
+                columns: const <DataColumn>[
+                  DataColumn(label: Text('Número')),
+                  DataColumn(label: Text('Loteria')),
+                  DataColumn(label: Text('Precio')),
+                  DataColumn(label: Text('Telefono')),
+                ],
+                rows: const <DataRow>[
+                  DataRow(cells: <DataCell>[
+                    DataCell(Text('2322')),
+                    DataCell(Text('Cundi')),
+                    DataCell(Text('1000')),
+                    DataCell(Text('312312321'))
+              ]),
+                  DataRow(cells: <DataCell>[
+                    DataCell(Text('2322')),
+                    DataCell(Text('Cundi')),
+                    DataCell(Text('1000')),
+                    DataCell(Text('312312321'))
+                  ])
 
-  _buildRow(Sale sale) {
-    return ListTile(
-        title: Text(
-          'Número: ${sale.numbersale}',
-          style: const TextStyle(fontSize: 17, color: Colors.black),
-        ),
-        subtitle: Text(
-            'Precio: ${sale.price}',
-            style: const TextStyle(fontSize: 15, color: Colors.grey)
-        ),
+            ]),
+          ),
+          const SizedBox(height: 15,),
+          const Center(
+            child: Text('Acumulado supervisor: 5000',style: TextStyle(fontSize: 20),),
+          )
+        ],
+      ),
     );
   }
 }

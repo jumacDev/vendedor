@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:vendedor/UI/Pages/login_page.dart';
 
 void main()  {
@@ -27,15 +28,24 @@ class _SellerAppState extends State<SellerApp> {
     CollectionReference collectionReference = FirebaseFirestore.instance.collection("chile");
     QuerySnapshot users = await collectionReference.get();
 
-    if (users.docs.length != 0){
+    if (users.docs.isNotEmpty){
       for (var doc in users.docs){
         print(doc.data());
       }
     }
 }
+  @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      supportedLocales: [
+        Locale('es')
+      ],
       title: 'Vendedores',
       home: LoginPage(),
     );

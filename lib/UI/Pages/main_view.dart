@@ -54,8 +54,8 @@ class _MainViewState extends State<MainView> {
         children: [
           const SizedBox(height: 15,),
           ActionChip(
-            avatar: Icon(Icons.abc, size: 60,),
-            backgroundColor: isSelect? Colors.grey : primarycolor,
+            avatar: const Icon(Icons.abc, size: 60,),
+            backgroundColor: isSelect? primarycolor : Colors.grey,
               label: const Text('Loteria 1', style: TextStyle(fontSize: 40, color: Colors.white),),
               onPressed: (){
               setState(() {
@@ -65,8 +65,8 @@ class _MainViewState extends State<MainView> {
           ),
           const SizedBox(height: 15,),
           ActionChip(
-              avatar: Icon(Icons.abc, size: 60),
-              backgroundColor: isSelect1? Colors.grey : primarycolor,
+              avatar: const Icon(Icons.abc, size: 60),
+              backgroundColor: isSelect1? primarycolor : Colors.grey,
               label: const Text('Loteria 2', style: TextStyle(fontSize: 40, color: Colors.white),),
               onPressed: (){
                 setState(() {
@@ -76,10 +76,10 @@ class _MainViewState extends State<MainView> {
           ),
           const SizedBox(height: 15,),
           ActionChip(
-              avatar: Icon(Icons.abc, size: 60),
-              backgroundColor: isSelect2? Colors.grey : primarycolor,
+              avatar: const Icon(Icons.abc, size: 60),
+              backgroundColor: isSelect2? primarycolor : Colors.grey,
               label: const Text('Loteria 3', style: TextStyle(fontSize: 40, color: Colors.white),),
-              tooltip: 'Horra de cierre 6 pm',
+              tooltip: 'Hora de cierre 6 pm',
               onPressed: (){
                 setState(() {
                   isSelect2 = !isSelect2;

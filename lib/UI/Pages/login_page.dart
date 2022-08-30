@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vendedor/UI/Pages/seller_page.dart';
+import 'package:vendedor/UI/Pages/main_view.dart';
 import '../Style/color_to_views.dart';
 
 class LoginPage extends StatefulWidget {
