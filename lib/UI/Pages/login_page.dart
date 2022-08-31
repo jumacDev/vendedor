@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
         key: _formKey,
         child: ListView(
           children: [
-            const SizedBox(height: 150),
+            const SizedBox(height: 130),
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 80),
               child: TextFormField(
