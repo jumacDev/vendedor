@@ -43,6 +43,8 @@ class _ResultsViewState extends State<ResultsView> {
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 50),
               // ignore: deprecated_member_use
               child: RaisedButton(
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
                 onPressed: () async {
                   DateTime? saleDate = await showDatePicker(
                       builder: (context, child) {
