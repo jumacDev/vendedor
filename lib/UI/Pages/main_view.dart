@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vendedor/MODELS/sale_model.dart';
-import 'package:vendedor/MODELS/seller_model.dart';
-//import 'package:vendedor/UI/Pages/input_page.dart';
-//import 'package:vendedor/UI/Pages/sales_page.dart';
+import 'package:vendedor/UI/Pages/input_page.dart';
 import 'package:vendedor/UI/Style/color_to_views.dart';
 import '../Widgets/main_menu.dart';
 
@@ -27,7 +24,9 @@ class _MainViewState extends State<MainView> {
       body: sellerBody(context),
       drawer: mainMenu(context),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> const InputPage()));
+        },
         label: const Text('Siguiente', style: TextStyle(fontSize: 20,color: Colors.white),),
         backgroundColor: primarycolor,
 
@@ -44,7 +43,6 @@ class _MainViewState extends State<MainView> {
   }
 
   sellerBody(BuildContext context) {
-    Seller seller = buildseller();
 
     return Container(
       alignment: Alignment.center,
@@ -89,22 +87,5 @@ class _MainViewState extends State<MainView> {
         ],
       ),
     );
-  }
-
-  Seller buildseller() {
-    Seller sellerinst = Seller('seller123l');
-    Sale sale = Sale('1234', '1000');
-    Sale sale2 = Sale('3256', '2000');
-    Sale sale3 = Sale('1457', '3000');
-    Sale sale4 = Sale('1234', '4000');
-    Sale sale5 = Sale('1343', '1000');
-
-    sellerinst.saleslist.add(sale);
-    sellerinst.saleslist.add(sale2);
-    sellerinst.saleslist.add(sale3);
-    sellerinst.saleslist.add(sale4);
-    sellerinst.saleslist.add(sale5);
-
-    return sellerinst;
   }
 }

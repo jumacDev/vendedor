@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:vendedor/UI/Pages/awards_view.dart';
 import 'package:vendedor/UI/Pages/login_page.dart';
 import 'package:vendedor/UI/Pages/main_view.dart';
+import 'package:vendedor/UI/Pages/results_page.dart';
 import 'package:vendedor/UI/Pages/sales_page.dart';
 import 'package:vendedor/UI/Style/color_to_views.dart';
 
@@ -54,7 +56,9 @@ Widget mainMenu(BuildContext context) {
           title: const Text('Resultados', style: TextStyle(fontSize: 15)),
           leading: const Icon(Icons.fact_check),
           textColor: primarycolor,
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> const ResultsView()));
+          },
         ),
         const SizedBox(
           height: 3,
@@ -64,7 +68,9 @@ Widget mainMenu(BuildContext context) {
           title: const Text('Premios', style: TextStyle(fontSize: 15)),
           leading: const Icon(Icons.emoji_events),
           textColor: primarycolor,
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> const AwardsView()));
+          },
         ),
         const SizedBox(
           height: 3,
