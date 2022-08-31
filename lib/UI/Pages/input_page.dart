@@ -278,7 +278,7 @@ class _InputPageState extends State<InputPage> {
                   )
                 ],
               ),
-              const Expanded(child: SizedBox(height: 150,)),
+              const SizedBox(height: 150,),
               const SizedBox(height: 20,),
               const Center(
                 child: Text("Total a pagar: XXX", style: TextStyle(fontSize: 15)

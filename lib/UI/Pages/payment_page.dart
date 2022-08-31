@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vendedor/UI/Style/color_to_views.dart';
 import 'package:vendedor/UI/Widgets/Main_menu.dart';
 
+import '../Widgets/alert_dialog.dart';
+
 class PaymentView extends StatefulWidget {
   const PaymentView({Key? key}) : super(key: key);
 
@@ -45,14 +47,18 @@ class _PaymentViewState extends State<PaymentView> {
         child: Form(
           key: _formKey,
           child: ListView(children: [
-            const SizedBox(height: 60,),
+            const SizedBox(
+              height: 60,
+            ),
             const Center(
               child: Text(
                 "Número de Teléfono",
                 style: TextStyle(fontSize: 20),
               ),
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
               child: TextFormField(
@@ -62,13 +68,11 @@ class _PaymentViewState extends State<PaymentView> {
                     labelText: 'Número',
                     floatingLabelStyle:
                         MaterialStateTextStyle.resolveWith((states) {
-                      return const TextStyle(
-                          color: primarycolor);
+                      return const TextStyle(color: primarycolor);
                     }),
                     border: const OutlineInputBorder(),
                     focusedBorder: const OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: primarycolor),
+                      borderSide: BorderSide(color: primarycolor),
                     ),
                   ),
                   validator: (value) {
@@ -82,10 +86,17 @@ class _PaymentViewState extends State<PaymentView> {
                     }
                   }),
             ),
-            const SizedBox(height: 150,),
+            const SizedBox(
+              height: 150,
+            ),
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 100),
-              child: const Text("Total a pagar: XXXX", style: TextStyle(fontSize: 20),),),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 10, horizontal: 100),
+              child: const Text(
+                "Total a pagar: XXXX",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -96,8 +107,8 @@ class _PaymentViewState extends State<PaymentView> {
                     child: RaisedButton(
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15))),
-                      padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 30),
                       color: primarycolor,
                       onPressed: () {
                         Navigator.pop(context);
@@ -106,8 +117,7 @@ class _PaymentViewState extends State<PaymentView> {
                         'Atrás',
                         style: TextStyle(color: Colors.white),
                       ),
-                    )
-                ),
+                    )),
                 Container(
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.center,
@@ -115,11 +125,11 @@ class _PaymentViewState extends State<PaymentView> {
                     child: RaisedButton(
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15))),
-                      padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 30),
                       color: primarycolor,
-                      onPressed: () {
-
+                      onPressed: () async {
+                        alertDialog(context);
                       },
                       child: const Text(
                         'Confirmar',
