@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "924312376333",
+    "project_id": "millo-df2f3",
+    "storage_bucket": "millo-df2f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924312376333:android:57e465eeecb53aee487144",
+        "android_client_info": {
+          "package_name": "com.vendedor.app.vendedor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "924312376333-qh7at8pmn225tj3gdde66hvgk1fpf691.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARb5KgNQNXFpM2vRJaXdcq4nDL68dLB9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "924312376333-qh7at8pmn225tj3gdde66hvgk1fpf691.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "924312376333-9oc4h1h6njd29l299k5h8s6o0ebci77j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vendedor.app.vendedor"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

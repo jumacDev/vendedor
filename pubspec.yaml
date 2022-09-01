@@ -21,7 +21,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: 
   cloud_firestore:
-  firebase_auth:
   toggle_switch:
 
 dev_dependencies:
