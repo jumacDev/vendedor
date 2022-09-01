@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vendedor/UI/Pages/main_view.dart';
@@ -25,7 +26,25 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     _obscureText = true;
   }
+  //-------------------------------------backend--------------------------------
+  validarDatos()async{
+    try{
+      CollectionReference ref= FirebaseFirestore.instance.collection('Usuarios');
+      QuerySnapshot usuario= await ref.get();
 
+      if (usuario.docs.length != 0){
+
+      }else{
+
+      }
+    }catch(e){
+      print('Error .....'+e.toString());
+    }
+  }
+
+
+
+//------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
     return Scaffold(

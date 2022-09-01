@@ -22,18 +22,8 @@ class _SellerAppState extends State<SellerApp> {
   @override
   void initState(){
     super.initState();
-    getUsers();
   }
-  void getUsers() async {
-    CollectionReference collectionReference = FirebaseFirestore.instance.collection("chile");
-    QuerySnapshot users = await collectionReference.get();
 
-    if (users.docs.isNotEmpty){
-      for (var doc in users.docs){
-        print(doc.data());
-      }
-    }
-}
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(

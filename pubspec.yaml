@@ -22,6 +22,7 @@ dependencies:
   firebase_core: 
   cloud_firestore:
   toggle_switch:
+  firebase_database: ^9.1.3
 
 dev_dependencies:
   flutter_test:
