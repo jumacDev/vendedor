@@ -36,12 +36,20 @@ class _LoginPageState extends State<LoginPage> {
       QuerySnapshot usuario= await ref.get();
       print("Usuario a buscar");
       print(_userText.text);
+      print("Contraseña a buscar");
+      print(_passText.text);
       if (usuario.docs.length != 0){
         for (var cursor in usuario.docs){
           if(cursor.get('Nombre')==_userText.text){
             print("Usuario encontrado");
             if (cursor.get('Contrasena')==_passText.text){
               print("Credenciales correctas");
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MainView()),
+                      (route) => false
+              );
               login= true;
             }
           }else{
@@ -145,30 +153,31 @@ class _LoginPageState extends State<LoginPage> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                   color: primarycolor,
+
                   onPressed: () {
 
                     validarDatos();
                     print(login);
+                    if (_formKey.currentState!.validate()) {
+                    // If the form is valid, display a snackbar. In the real world,
+                    // you'd often call a server or save the information in a database.
+                    ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Revisando')),
+                    );
 
-                    if(login == true){
+                    //if(login == true){
                       // if (_formKey.currentState!.validate()) {
                       // lógica de inicio de sesión aquí
 
 
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const MainView()));
-                      //Navigator.pushAndRemoveUntil(
-                        //  context,
-                          //MaterialPageRoute(
-                           //   builder: (context) => const MainView()),
-                          //(route) => false
-                      //);
-                    }else{
-                      print("no se pudo iniciar sesion");
+
+                   // }else{
+                     // print("no se pudo iniciar sesion");
                       //reiniciando campos de inicio de sesión
-                    }
-                    //_userText.clear();
-                    //_passText.clear();
-                    //_formKey.currentState!.reset();
+                    };
+                    _userText.clear();
+                    _passText.clear();
+                    _formKey.currentState!.reset();
                   },
                   child: const Text(
                     'Entrar',
