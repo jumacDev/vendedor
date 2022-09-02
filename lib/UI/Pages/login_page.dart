@@ -31,27 +31,24 @@ class _LoginPageState extends State<LoginPage> {
     _obscureText = true;
   }
   //-------------------------------------backend--------------------------------
-  validarDatos() async{
+  Future validarDatos() async{
     try{
-      CollectionReference ref= FirebaseFirestore.instance.collection('Users');
-      QuerySnapshot usuario= await ref.get();
-      print("Usuario a bursar");
-      print(_userText.text);
-      print("Contraseña a buscar");
-      print(_passText.text);
-      if (usuario.docs.length != 0){
+      CollectionReference ref = FirebaseFirestore.instance.collection('Users');
+      QuerySnapshot usuario = await ref.get();
+      print("Usuario a buscar: ${_userText.text}");
+      print("Contraseña a buscar: ${_passText.text}");
+      print('usuarios: ${usuario.docs}');
+      // ignore: prefer_is_empty
+      if (usuario.docs.isNotEmpty){
         for (var cursor in usuario.docs){
-          if(cursor.get('Nombre')==_userText.text){
+
+          print('Cursor: ${cursor.data()}');
+
+          if(cursor.get('Nombre') == _userText.text){
             print("Usuario encontrado");
-            if (cursor.get('Contrasena')==_passText.text){
+            if (cursor.get('Contrasena') == _passText.text){
               print("Credenciales correctas");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const MainView()),
-                      (route) => false
-              );
-              login= true;
+              login = true;
             }
           }else{
             print("Usuario NO encontrado");
@@ -150,28 +147,27 @@ class _LoginPageState extends State<LoginPage> {
                 child: OutlinedButton(
                   style: buttonsStyle(),
                   onPressed: () {
-                    validarDatos();
-                    print(login);
+                    validarDatos().then((value) => print(login));
                     if (_formKey.currentState!.validate()) {
+
                     // If the form is valid, display a snackbar. In the real world,
                     // you'd often call a server or save the information in a database.
                     ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Revisando')),
                     );
+                    if(login){
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MainView()),
+                              (route) => false
+                      );
+                    }
 
-                    //if(login == true){
-                      // if (_formKey.currentState!.validate()) {
-                      // lógica de inicio de sesión aquí
-
-
-
-                   // }else{
-                     // print("no se pudo iniciar sesion");
-                      //reiniciando campos de inicio de sesión
-                    };
-                    _userText.clear();
-                    _passText.clear();
-                    _formKey.currentState!.reset();
+                    }
+                   // _userText.clear();
+                    //_passText.clear();
+                    //_formKey.currentState!.reset();
                   },
                   child: const Text(
                     'Entrar',
