@@ -36,8 +36,6 @@ class _LoginPageState extends State<LoginPage> {
       print(_userText.text);
       if (usuario.docs.length != 0){
         for (var cursor in usuario.docs){
-          print('BDD: ');
-          print(cursor.get('Nombre'));
           if(cursor.get('Nombre')==_userText.text){
             print("Usuario encontrado");
           }else{
@@ -150,9 +148,9 @@ class _LoginPageState extends State<LoginPage> {
 
 
                       //reiniciando campos de inicio de sesión
-                      _userText.clear();
-                      _passText.clear();
-                      _formKey.currentState!.reset();
+                    //  _userText.clear();
+                    //  _passText.clear();
+                   //   _formKey.currentState!.reset();
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
