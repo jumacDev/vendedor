@@ -16,6 +16,8 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _userText = TextEditingController();
   final TextEditingController _passText = TextEditingController();
 
+  bool login = false;
+
   final _formKey = GlobalKey<FormState>();
 
   late bool _obscureText;
@@ -38,10 +40,15 @@ class _LoginPageState extends State<LoginPage> {
         for (var cursor in usuario.docs){
           if(cursor.get('Nombre')==_userText.text){
             print("Usuario encontrado");
+            if (cursor.get('Contrasena')==_passText.text){
+              print("Credenciales correctas");
+              login= true;
+            }
           }else{
             print("Usuario NO encontrado");
           }
         }
+        login = false;
       }else{
         print("No hay objetos en la coleccion");
       }
@@ -140,23 +147,28 @@ class _LoginPageState extends State<LoginPage> {
                   color: primarycolor,
                   onPressed: () {
 
-                    if (_formKey.currentState!.validate()) {
-                      //lógica de inicio de sesión aquí
+                    validarDatos();
+                    print(login);
 
-                      validarDatos();
+                    if(login == true){
+                      // if (_formKey.currentState!.validate()) {
+                      // lógica de inicio de sesión aquí
 
 
-
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const MainView()));
+                      //Navigator.pushAndRemoveUntil(
+                        //  context,
+                          //MaterialPageRoute(
+                           //   builder: (context) => const MainView()),
+                          //(route) => false
+                      //);
+                    }else{
+                      print("no se pudo iniciar sesion");
                       //reiniciando campos de inicio de sesión
-                    //  _userText.clear();
-                    //  _passText.clear();
-                   //   _formKey.currentState!.reset();
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MainView()),
-                          (route) => false);
                     }
+                    //_userText.clear();
+                    //_passText.clear();
+                    //_formKey.currentState!.reset();
                   },
                   child: const Text(
                     'Entrar',
