@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _userText = TextEditingController();
   final TextEditingController _passText = TextEditingController();
 
-  bool login = false;
+  bool _login = false;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -37,24 +37,24 @@ class _LoginPageState extends State<LoginPage> {
       QuerySnapshot usuario = await ref.get();
       print("Usuario a buscar: ${_userText.text}");
       print("Contraseña a buscar: ${_passText.text}");
-      print('usuarios: ${usuario.docs}');
       // ignore: prefer_is_empty
       if (usuario.docs.isNotEmpty){
         for (var cursor in usuario.docs){
 
           print('Cursor: ${cursor.data()}');
 
-          if(cursor.get('Nombre') == _userText.text){
+          if(cursor.get('Nombre').toString() == _userText.text){
             print("Usuario encontrado");
-            if (cursor.get('Contrasena') == _passText.text){
+            if (cursor.get('Contrasena').toString() == _passText.text){
               print("Credenciales correctas");
-              login = true;
+              _login = true;
+              break;
             }
           }else{
             print("Usuario NO encontrado");
+            _login = false;
           }
         }
-        login = false;
       }else{
         print("No hay objetos en la coleccion");
       }
@@ -147,23 +147,20 @@ class _LoginPageState extends State<LoginPage> {
                 child: OutlinedButton(
                   style: buttonsStyle(),
                   onPressed: () {
-                    validarDatos().then((value) => print(login));
-                    if (_formKey.currentState!.validate()) {
+                    validarDatos();
+                    if (_formKey.currentState!.validate() && _login) {
 
                     // If the form is valid, display a snackbar. In the real world,
                     // you'd often call a server or save the information in a database.
                     ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Revisando')),
                     );
-                    if(login){
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const MainView()),
                               (route) => false
                       );
-                    }
-
                     }
                    // _userText.clear();
                     //_passText.clear();
