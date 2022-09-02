@@ -30,13 +30,18 @@ class _LoginPageState extends State<LoginPage> {
   //-------------------------------------backend--------------------------------
   validarDatos() async{
     try{
-      CollectionReference ref= FirebaseFirestore.instance.collection('Usuarios');
+      CollectionReference ref= FirebaseFirestore.instance.collection('Users');
       QuerySnapshot usuario= await ref.get();
-
+      print("Usuario a buscar");
+      print(_userText.text);
       if (usuario.docs.length != 0){
         for (var cursor in usuario.docs){
-          if(cursor.get('user')==_userText.text){
+          print('BDD: ');
+          print(cursor.get('Nombre'));
+          if(cursor.get('Nombre')==_userText.text){
             print("Usuario encontrado");
+          }else{
+            print("Usuario NO encontrado");
           }
         }
       }else{
@@ -60,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
 
   AppBar myAppbar() => AppBar(
         title: const Text(
-          'MilloChance Vendedor',
+          'MilloChance - Vendedor',
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -136,8 +141,13 @@ class _LoginPageState extends State<LoginPage> {
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                   color: primarycolor,
                   onPressed: () {
+
                     if (_formKey.currentState!.validate()) {
                       //lógica de inicio de sesión aquí
+
+                      validarDatos();
+
+
 
                       //reiniciando campos de inicio de sesión
                       _userText.clear();
