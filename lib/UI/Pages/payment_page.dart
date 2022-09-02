@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vendedor/UI/Style/color_to_views.dart';
 import 'package:vendedor/UI/Widgets/Main_menu.dart';
 
+import '../Style/buttons_style.dart';
 import '../Widgets/alert_dialog.dart';
 
 class PaymentView extends StatefulWidget {
@@ -104,12 +105,8 @@ class _PaymentViewState extends State<PaymentView> {
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.center,
                     // ignore: deprecated_member_use
-                    child: RaisedButton(
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 30),
-                      color: primarycolor,
+                    child: OutlinedButton(
+                      style: buttonsStyle(),
                       onPressed: () {
                         Navigator.pop(context);
                       },
@@ -122,12 +119,8 @@ class _PaymentViewState extends State<PaymentView> {
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.center,
                     // ignore: deprecated_member_use
-                    child: RaisedButton(
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 30),
-                      color: primarycolor,
+                    child: OutlinedButton(
+                      style: buttonsStyle(),
                       onPressed: () async {
                         alertDialog(context);
                       },

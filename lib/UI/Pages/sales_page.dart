@@ -1,6 +1,10 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:vendedor/UI/Style/color_to_views.dart';
 import 'package:vendedor/UI/Widgets/main_menu.dart';
+
+import '../Style/buttons_style.dart';
 
 class SalesPage extends StatefulWidget {
   const SalesPage({Key? key}) : super(key: key);
@@ -40,10 +44,8 @@ class _SalesPageState extends State<SalesPage> {
         children: [
           Container(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-              // ignore: deprecated_member_use
-              child: RaisedButton(
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
+              child: OutlinedButton(
+                style: buttonsStyle(),
                 onPressed: () async {
                   DateTime? saleDate = await showDatePicker(
                     builder: (context, child) {
@@ -56,7 +58,7 @@ class _SalesPageState extends State<SalesPage> {
                           ),
                           textButtonTheme: TextButtonThemeData(
                             style: TextButton.styleFrom(
-                              primary: primarycolor, // button text color
+                              foregroundColor: primarycolor, // button text color
                             ),
                           ),
                         ),
@@ -69,7 +71,6 @@ class _SalesPageState extends State<SalesPage> {
                     firstDate: DateTime(2021),
                     lastDate: DateTime(2100));
                 },
-                color: primarycolor,
                 child: const Text(
                   'Seleccionar Fecha',
                   style: TextStyle(fontSize: 15, color: Colors.white),

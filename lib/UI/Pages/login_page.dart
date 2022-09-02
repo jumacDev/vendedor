@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vendedor/UI/Pages/main_view.dart';
+import '../Style/buttons_style.dart';
 import '../Style/color_to_views.dart';
 
 class LoginPage extends StatefulWidget {
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
     try{
       CollectionReference ref= FirebaseFirestore.instance.collection('Users');
       QuerySnapshot usuario= await ref.get();
-      print("Usuario a buscar");
+      print("Usuario a bursar");
       print(_userText.text);
       print("Contraseña a buscar");
       print(_passText.text);
@@ -61,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
         print("No hay objetos en la coleccion");
       }
     }catch(e){
-      print('Error .....'+e.toString());
+      print('Error .....${e.toString()}');
     }
   }
 
@@ -146,16 +147,9 @@ class _LoginPageState extends State<LoginPage> {
             Container(
                 padding: const EdgeInsets.all(10),
                 alignment: Alignment.center,
-                // ignore: deprecated_member_use
-                child: RaisedButton(
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                  color: primarycolor,
-
+                child: OutlinedButton(
+                  style: buttonsStyle(),
                   onPressed: () {
-
                     validarDatos();
                     print(login);
                     if (_formKey.currentState!.validate()) {
@@ -183,7 +177,8 @@ class _LoginPageState extends State<LoginPage> {
                     'Entrar',
                     style: TextStyle(color: Colors.white),
                   ),
-                ))
+                )
+            )
           ],
         ),
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vendedor/UI/Pages/payment_page.dart';
 import 'package:vendedor/UI/Widgets/main_menu.dart';
 
+import '../Style/buttons_style.dart';
 import '../Style/color_to_views.dart';
 
 class InputPage extends StatefulWidget {
@@ -292,12 +293,8 @@ class _InputPageState extends State<InputPage> {
                       padding: const EdgeInsets.all(10),
                       alignment: Alignment.center,
                       // ignore: deprecated_member_use
-                      child: RaisedButton(
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15))),
-                        padding:
-                        const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                        color: primarycolor,
+                      child: OutlinedButton(
+                        style: buttonsStyle(),
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -311,12 +308,8 @@ class _InputPageState extends State<InputPage> {
                       padding: const EdgeInsets.all(10),
                       alignment: Alignment.center,
                       // ignore: deprecated_member_use
-                      child: RaisedButton(
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15))),
-                        padding:
-                        const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                        color: primarycolor,
+                      child: OutlinedButton(
+                        style: buttonsStyle(),
                         onPressed: () {
                           //avanzando a vista de pagos
                           Navigator.push(context,
