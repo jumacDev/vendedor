@@ -1,4 +1,5 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vendedor/UI/Pages/main_view.dart';
@@ -27,20 +28,24 @@ class _LoginPageState extends State<LoginPage> {
     _obscureText = true;
   }
   //-------------------------------------backend--------------------------------
- // validarDatos()async{
-   // try{
-    //  CollectionReference ref= FirebaseFirestore.instance.collection('Usuarios');
-     // QuerySnapshot usuario= await ref.get();
+  validarDatos() async{
+    try{
+      CollectionReference ref= FirebaseFirestore.instance.collection('Usuarios');
+      QuerySnapshot usuario= await ref.get();
 
-    //  if (usuario.docs.length != 0){
-
-   //   }else{
-
-   //   }
-  //  }catch(e){
- //     print('Error .....'+e.toString());
-  //  }
- // }
+      if (usuario.docs.length != 0){
+        for (var cursor in usuario.docs){
+          if(cursor.get('user')==_userText.text){
+            print("Usuario encontrado");
+          }
+        }
+      }else{
+        print("No hay objetos en la coleccion");
+      }
+    }catch(e){
+      print('Error .....'+e.toString());
+    }
+  }
 
 
 
