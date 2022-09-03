@@ -58,7 +58,7 @@ class _SalesPageState extends State<SalesPage> {
                           ),
                           textButtonTheme: TextButtonThemeData(
                             style: TextButton.styleFrom(
-                              foregroundColor: primarycolor, // button text color
+                              backgroundColor: primarycolor, // button text color
                             ),
                           ),
                         ),

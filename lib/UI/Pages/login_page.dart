@@ -1,11 +1,10 @@
-// ignore_for_file: use_build_context_synchronously
 import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vendedor/UI/Pages/main_view.dart';
 import '../Style/buttons_style.dart';
 import '../Style/color_to_views.dart';
-import '../Widgets/snack_bar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -18,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _userText = TextEditingController();
   final TextEditingController _passText = TextEditingController();
 
-  bool _login = false;
+  bool login = false;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -32,37 +31,42 @@ class _LoginPageState extends State<LoginPage> {
     _obscureText = true;
   }
   //-------------------------------------backend--------------------------------
-  Future validarDatos() async{
+  validarDatos() async{
     try{
-      CollectionReference ref = FirebaseFirestore.instance.collection('Users');
-      QuerySnapshot usuario = await ref.get();
-      print("Usuario a buscar: ${_userText.text}");
-      print("Contraseña a buscar: ${_passText.text}");
-      // ignore: prefer_is_empty
-      if (usuario.docs.isNotEmpty){
+      CollectionReference ref= FirebaseFirestore.instance.collection('Users');
+      QuerySnapshot usuario= await ref.get();
+      print("Usuario a bursar");
+      print(_userText.text);
+      print("Contraseña a buscar");
+      print(_passText.text);
+      if (usuario.docs.length != 0){
         for (var cursor in usuario.docs){
-
-          print('Cursor: ${cursor.data()}');
-
-          if(cursor.get('Nombre').toString() == _userText.text){
-            if (cursor.get('Contrasena').toString() == _passText.text){
-              _login = true;
-
-              break;
+          if(cursor.get('Nombre')==_userText.text){
+            print("Usuario encontrado");
+            if (cursor.get('Contrasena')==_passText.text){
+              print("Credenciales correctas");
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MainView()),
+                      (route) => false
+              );
+              login= true;
             }
           }else{
-            snackbar(context, 'Usuario o Contraseña Incorrectos');
-            _login = false;
+            print("Usuario NO encontrado");
           }
         }
+        login = false;
       }else{
         print("No hay objetos en la coleccion");
-        snackbar(context, 'Ha ocurrido un error');
       }
     }catch(e){
       print('Error .....${e.toString()}');
     }
   }
+
+
 
 //------------------------------------------------------------------------------
   @override
@@ -146,27 +150,28 @@ class _LoginPageState extends State<LoginPage> {
                 child: OutlinedButton(
                   style: buttonsStyle(),
                   onPressed: () {
+                    validarDatos();
+                    print(login);
                     if (_formKey.currentState!.validate()) {
-                      // If the form is valid, display a snackbar. In the real world,
-                      // you'd often call a server or save the information in a database.
-                      snackbar(context, 'Revisando...');
-                      validarDatos().then((value) {
-                        if(_login) {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MainView()),
-                                  (route) => false
-                          );
-                        }
-                      });
+                    // If the form is valid, display a snackbar. In the real world,
+                    // you'd often call a server or save the information in a database.
+                    ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Revisando')),
+                    );
+
+                    //if(login == true){
+                      // if (_formKey.currentState!.validate()) {
+                      // lógica de inicio de sesión aquí
 
 
 
-                    }
+                   // }else{
+                     // print("no se pudo iniciar sesion");
+                      //reiniciando campos de inicio de sesión
+                    };
                    // _userText.clear();
-                    //_passText.clear();
-                    //_formKey.currentState!.reset();
+                  //  _passText.clear();
+                   // _formKey.currentState!.reset();
                   },
                   child: const Text(
                     'Entrar',

@@ -57,7 +57,7 @@ class _ResultsViewState extends State<ResultsView> {
                             ),
                             textButtonTheme: TextButtonThemeData(
                               style: TextButton.styleFrom(
-                                foregroundColor: primarycolor, // button text color
+                                backgroundColor: primarycolor, // button text color
                               ),
                             ),
                           ),
