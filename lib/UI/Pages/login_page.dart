@@ -1,10 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vendedor/UI/Pages/main_view.dart';
 import '../Style/buttons_style.dart';
 import '../Style/color_to_views.dart';
+import '../Widgets/snack_bar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -44,19 +45,19 @@ class _LoginPageState extends State<LoginPage> {
           print('Cursor: ${cursor.data()}');
 
           if(cursor.get('Nombre').toString() == _userText.text){
-            print("Usuario encontrado");
             if (cursor.get('Contrasena').toString() == _passText.text){
-              print("Credenciales correctas");
               _login = true;
+
               break;
             }
           }else{
-            print("Usuario NO encontrado");
+            snackbar(context, 'Usuario o Contraseña Incorrectos');
             _login = false;
           }
         }
       }else{
         print("No hay objetos en la coleccion");
+        snackbar(context, 'Ha ocurrido un error');
       }
     }catch(e){
       print('Error .....${e.toString()}');
@@ -145,20 +146,23 @@ class _LoginPageState extends State<LoginPage> {
                 child: OutlinedButton(
                   style: buttonsStyle(),
                   onPressed: () {
-                    validarDatos();
-                    if (_formKey.currentState!.validate() && _login) {
+                    if (_formKey.currentState!.validate()) {
+                      // If the form is valid, display a snackbar. In the real world,
+                      // you'd often call a server or save the information in a database.
+                      snackbar(context, 'Revisando...');
+                      validarDatos().then((value) {
+                        if(_login) {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MainView()),
+                                  (route) => false
+                          );
+                        }
+                      });
 
-                    // If the form is valid, display a snackbar. In the real world,
-                    // you'd often call a server or save the information in a database.
-                    ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Revisando')),
-                    );
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MainView()),
-                              (route) => false
-                      );
+
+
                     }
                    // _userText.clear();
                     //_passText.clear();

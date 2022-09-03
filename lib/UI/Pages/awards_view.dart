@@ -57,7 +57,7 @@ class _AwardsViewState extends State<AwardsView> {
                             ),
                             textButtonTheme: TextButtonThemeData(
                               style: TextButton.styleFrom(
-                                backgroundColor: primarycolor, // button text color
+                                  foregroundColor: primarycolor, // button text color
                               ),
                             ),
                           ),
