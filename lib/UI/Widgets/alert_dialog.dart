@@ -19,7 +19,7 @@ Future<void> alertDialog(BuildContext context) async {
             actions: [
               TextButton(
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const MainView()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> MainView("")));
                 },
                 child: const Text(
                   'Aceptar',

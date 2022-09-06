@@ -31,11 +31,13 @@ class _LoginPageState extends State<LoginPage> {
     _obscureText = true;
   }
   //-------------------------------------backend--------------------------------
+
+
   validarDatos() async{
     try{
       CollectionReference ref= FirebaseFirestore.instance.collection('Users');
       QuerySnapshot usuario= await ref.get();
-      print("Usuario a bursar");
+      print("Usuario a buscar");
       print(_userText.text);
       print("Contraseña a buscar");
       print(_passText.text);
@@ -44,13 +46,9 @@ class _LoginPageState extends State<LoginPage> {
           if(cursor.get('Nombre')==_userText.text){
             print("Usuario encontrado");
             if (cursor.get('Contrasena')==_passText.text){
-              print("Credenciales correctas");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const MainView()),
-                      (route) => false
-              );
+              print("Credenciales correctas, Dato a enviar: ");
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MainView(_userText.text)));
               login= true;
             }
           }else{
@@ -65,7 +63,6 @@ class _LoginPageState extends State<LoginPage> {
       print('Error .....${e.toString()}');
     }
   }
-
 
 
 //------------------------------------------------------------------------------
@@ -151,27 +148,19 @@ class _LoginPageState extends State<LoginPage> {
                   style: buttonsStyle(),
                   onPressed: () {
                     validarDatos();
-                    print(login);
+                    //if(login==true){
+                      //ScaffoldMessenger.of(context).showSnackBar(
+                       // const SnackBar(content: Text('Bienvenido')),);
+                    //}
                     if (_formKey.currentState!.validate()) {
                     // If the form is valid, display a snackbar. In the real world,
                     // you'd often call a server or save the information in a database.
-                    ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Revisando')),
-                    );
-
-                    //if(login == true){
-                      // if (_formKey.currentState!.validate()) {
-                      // lógica de inicio de sesión aquí
-
-
-
-                   // }else{
-                     // print("no se pudo iniciar sesion");
-                      //reiniciando campos de inicio de sesión
-                    };
-                   // _userText.clear();
-                  //  _passText.clear();
-                   // _formKey.currentState!.reset();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Cargando')),);
+                    }
+                    //_userText.clear();
+                    //_passText.clear();
+                    //_formKey.currentState!.reset();
                   },
                   child: const Text(
                     'Entrar',

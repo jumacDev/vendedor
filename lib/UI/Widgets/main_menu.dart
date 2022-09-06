@@ -32,7 +32,8 @@ Widget mainMenu(BuildContext context) {
           leading: const Icon(Icons.home),
           textColor: primarycolor,
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> const MainView()));
+            String recibido ="";
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> MainView(recibido)));
           },
         ),
         const SizedBox(

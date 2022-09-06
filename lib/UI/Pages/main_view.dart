@@ -5,17 +5,24 @@ import '../Widgets/main_menu.dart';
 
 
 class MainView extends StatefulWidget {
-  const MainView({Key? key}) : super(key: key);
+  final String recibido;
+  const MainView(this.recibido, {Key? key}) : super(key: key);
 
   @override
   State<MainView> createState() => _MainViewState();
-
 }
+
 
 class _MainViewState extends State<MainView> {
   bool isSelect = false;
   bool isSelect1 = false;
   bool isSelect2 = false;
+
+  //-------------------------------------------------------------------
+
+
+
+  //-------------------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +44,7 @@ class _MainViewState extends State<MainView> {
   myAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: primarycolor,
-      title: const Text('Usuario: XX', style: TextStyle(color: Colors.white),),
+      title: Text(widget.recibido, style: TextStyle(color: Colors.white),),
       centerTitle: true,
     );
   }
