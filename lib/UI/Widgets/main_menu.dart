@@ -6,7 +6,7 @@ import 'package:vendedor/UI/Pages/results_page.dart';
 import 'package:vendedor/UI/Pages/sales_page.dart';
 import 'package:vendedor/UI/Style/color_to_views.dart';
 
-Widget mainMenu(BuildContext context) {
+Widget mainMenu(BuildContext context, final String user) {
   return Drawer(
     shape: const RoundedRectangleBorder(),
     child: ListView(
@@ -32,8 +32,7 @@ Widget mainMenu(BuildContext context) {
           leading: const Icon(Icons.home),
           textColor: primarycolor,
           onTap: () {
-            String recibido ="";
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> MainView(recibido)));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> MainView(user)));
           },
         ),
         const SizedBox(
@@ -45,7 +44,7 @@ Widget mainMenu(BuildContext context) {
           leading: const Icon(Icons.point_of_sale),
           textColor: primarycolor,
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> const SalesPage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> SalesPage(user)));
 
           },
         ),
@@ -58,7 +57,7 @@ Widget mainMenu(BuildContext context) {
           leading: const Icon(Icons.fact_check),
           textColor: primarycolor,
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> const ResultsView()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultsView(user)));
           },
         ),
         const SizedBox(
@@ -70,7 +69,7 @@ Widget mainMenu(BuildContext context) {
           leading: const Icon(Icons.emoji_events),
           textColor: primarycolor,
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> const AwardsView()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> AwardsView(user)));
           },
         ),
         const SizedBox(

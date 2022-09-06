@@ -7,7 +7,8 @@ import 'package:vendedor/UI/Widgets/main_menu.dart';
 import '../Style/buttons_style.dart';
 
 class SalesPage extends StatefulWidget {
-  const SalesPage({Key? key}) : super(key: key);
+  final String user;
+  const SalesPage(this.user, {Key? key}) : super(key: key);
 
   @override
   State<SalesPage> createState() => _SalesPageState();
@@ -21,16 +22,16 @@ class _SalesPageState extends State<SalesPage> {
     return Scaffold(
         appBar: myAppBar(),
         body: buildSales(),
-        drawer: mainMenu(context),
+        drawer: mainMenu(context, widget.user),
     );
   }
 
   myAppBar() {
     return AppBar(
       backgroundColor: primarycolor,
-      title: const Text(
-        'Usuario: XX',
-        style: TextStyle(color: Colors.white),
+      title: Text(
+        'Usuario: ${widget.user}',
+        style: const TextStyle(color: Colors.white),
       ),
       centerTitle: true,
     );

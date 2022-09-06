@@ -5,7 +5,8 @@ import '../Style/color_to_views.dart';
 import '../Widgets/Main_menu.dart';
 
 class ResultsView extends StatefulWidget {
-  const ResultsView({Key? key}) : super(key: key);
+  final String user;
+  const ResultsView(this.user, {Key? key}) : super(key: key);
 
   @override
   State<ResultsView> createState() => _ResultsViewState();
@@ -19,16 +20,16 @@ class _ResultsViewState extends State<ResultsView> {
     return Scaffold(
       appBar: myAppBar(),
       body: buildSales(),
-      drawer: mainMenu(context),
+      drawer: mainMenu(context, widget.user),
     );
   }
 
   myAppBar() {
     return AppBar(
       backgroundColor: primarycolor,
-      title: const Text(
-        'Usuario: XX',
-        style: TextStyle(color: Colors.white),
+      title: Text(
+        'Usuario: ${widget.user}',
+        style: const TextStyle(color: Colors.white),
       ),
       centerTitle: true,
     );

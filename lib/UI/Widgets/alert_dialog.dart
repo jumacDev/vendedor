@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../Pages/main_view.dart';
 import '../Style/color_to_views.dart';
 
-Future<void> alertDialog(BuildContext context) async {
+Future<void> alertDialog(BuildContext context, String user) async {
   return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -19,7 +19,7 @@ Future<void> alertDialog(BuildContext context) async {
             actions: [
               TextButton(
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> MainView("")));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> MainView(user)));
                 },
                 child: const Text(
                   'Aceptar',

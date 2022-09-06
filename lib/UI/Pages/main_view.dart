@@ -5,8 +5,8 @@ import '../Widgets/main_menu.dart';
 
 
 class MainView extends StatefulWidget {
-  final String recibido;
-  const MainView(this.recibido, {Key? key}) : super(key: key);
+  final String user;
+  const MainView(this.user, {Key? key}) : super(key: key);
 
   @override
   State<MainView> createState() => _MainViewState();
@@ -29,10 +29,10 @@ class _MainViewState extends State<MainView> {
     return Scaffold(
       appBar: myAppBar(context),
       body: sellerBody(context),
-      drawer: mainMenu(context),
+      drawer: mainMenu(context, widget.user),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> const InputPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => InputPage(widget.user)));
         },
         label: const Text('Siguiente', style: TextStyle(fontSize: 20,color: Colors.white),),
         backgroundColor: primarycolor,
@@ -44,7 +44,7 @@ class _MainViewState extends State<MainView> {
   myAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: primarycolor,
-      title: Text(widget.recibido, style: TextStyle(color: Colors.white),),
+      title: Text('Usuario: ${widget.user}', style: const TextStyle(color: Colors.white),),
       centerTitle: true,
     );
   }

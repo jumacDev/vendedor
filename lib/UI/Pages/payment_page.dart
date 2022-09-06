@@ -6,7 +6,8 @@ import '../Style/buttons_style.dart';
 import '../Widgets/alert_dialog.dart';
 
 class PaymentView extends StatefulWidget {
-  const PaymentView({Key? key}) : super(key: key);
+  final String user;
+  const PaymentView(this.user, {Key? key}) : super(key: key);
 
   @override
   State<PaymentView> createState() => _PaymentViewState();
@@ -22,16 +23,16 @@ class _PaymentViewState extends State<PaymentView> {
     return Scaffold(
       body: paymentBody(context),
       appBar: myAppBar(context),
-      drawer: mainMenu(context),
+      drawer: mainMenu(context, widget.user),
     );
   }
 
   myAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: primarycolor,
-      title: const Text(
-        'Usuario: XX',
-        style: TextStyle(color: Colors.white),
+      title: Text(
+        'Usuario: ${widget.user}',
+        style: const TextStyle(color: Colors.white),
       ),
       centerTitle: true,
     );
@@ -46,6 +47,7 @@ class _PaymentViewState extends State<PaymentView> {
           }
         },
         child: Form(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           key: _formKey,
           child: ListView(children: [
             const SizedBox(
@@ -77,14 +79,10 @@ class _PaymentViewState extends State<PaymentView> {
                     ),
                   ),
                   validator: (value) {
-                    if (value!.toString().length > 10 || value.isEmpty) {
+                    if (value!.toString().length > 10 || value.toString().length < 10 || value.isEmpty) {
                       return 'Número no válido';
-                    } else {
-                      setState(() {
-                        _numberPhoneText.text = value;
-                      });
-                      return null;
                     }
+                    return null;
                   }),
             ),
             const SizedBox(
@@ -122,7 +120,7 @@ class _PaymentViewState extends State<PaymentView> {
                     child: OutlinedButton(
                       style: buttonsStyle(),
                       onPressed: () async {
-                        alertDialog(context);
+                        alertDialog(context, widget.user);
                       },
                       child: const Text(
                         'Confirmar',
