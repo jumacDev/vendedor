@@ -40,7 +40,6 @@ class _LoginPageState extends State<LoginPage> {
       print("Contraseña a buscar: ${_passText.text}");
 
       if (usuario.docs.isNotEmpty){
-        print(usuario.docs);
         for (var cursor in usuario.docs){
 
           print('Cursor: ${cursor.data()}');
