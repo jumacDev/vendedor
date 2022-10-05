@@ -40,12 +40,13 @@ class _LoginPageState extends State<LoginPage> {
       print("Contraseña a buscar: ${_passText.text}");
 
       if (usuario.docs.isNotEmpty){
+        print(usuario.docs);
         for (var cursor in usuario.docs){
 
           print('Cursor: ${cursor.data()}');
 
-          if(cursor.get('Nombre').toString() == _userText.text){
-            if (cursor.get('Contrasena').toString() == _passText.text){
+          if(cursor.get('ID').toString() == _userText.text){
+            if (cursor.get('Password').toString() == _passText.text){
               _login = true;
 
               break;
